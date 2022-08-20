@@ -101,4 +101,39 @@ if #available(iOS 15, *) {
 ```
 
 
+## 注意⚠️：iOS 15.4及以上，在12小时制下，通过字符串获取NSDate取到的值为nil
+
+注意⚠️：iOS 15.4及以上，在12小时制下，通过NSDate获取时间字符串HH情况下依旧取得12小时制结果。
+
+注意⚠️：苹果官方对NSDateFormatter的解释中可以看出，要想在任何时候输出固定格式的日期，需要设置.local。
+
+```
+##OC
+NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_Hans_CN"];
+// 或者
+//dateFormatter.locale = [NSLocale systemLocale]; 
+dateFormatter.calendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierISO8601];
+
+
+##Swift
+let formatter = DateFormatter()
+formatter.locale = Locale.init(identifier: "zh_Hans_CN")
+formatter.calendar = Calendar.init(identifier: .iso8601)
+
+注意⚠️：如果我们需要使用日历相关，我们还需要设置dateFormatter的日历格式。
+dateFormatter.calendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierISO8601];
+
++ (NSDateFormatter *)DateFormatter{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    dateFormatter.locale = [NSLocale systemLocale];
+    dateFormatter.calendar = [[NSCalendar alloc]initWithCalendarIdentifier:NSCalendarIdentifierISO8601];
+    return dateFormatter;
+}
+
+```
+
+
+
+
 
