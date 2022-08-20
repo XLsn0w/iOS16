@@ -19,7 +19,7 @@ iOS 15中，导航栏的问题比较明显，调试之后发现是UINavigationBa
 在iOS 13 UINavigationBar新增了scrollEdgeAppearance属性，但在iOS 14及更早的版本中此属性只应用在大标题导航栏上。在iOS 15中此属性适用于所有导航栏。
 
 对于scrollEdgeAppearance属性的说明：
-
+```
 When a navigation controller contains a navigation bar and a scroll view, part of the scroll view’s content appears underneath the navigation bar. If the edge of the scrolled content reaches that bar, UIKit applies the appearance settings in this property.
 If the value of this property is nil, UIKit uses the settings found in the standard Appearance property, modified to use a transparent background. If no navigation controller manages your navigation bar, UIKit ignores this property and uses the standard appearance of the navigation bar.
 
@@ -68,14 +68,20 @@ If the value of this property is nil, UIKit uses the settings found in the stand
     [[UITextView appearance] setTintColor:[UIColor colorWithHexString:System_color]];
     [[UISearchBar appearance] setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forBarPosition:0 barMetrics:UIBarMetricsDefault];
 }
-UITabbar
+```
+
+## UITabbar
 tabbar和navigationBar的问题属于同一类，tabbar背景颜色设置失效，字体设置失效，阴影设置失效问题。
 
+```
 //旧代码
 self.tabBar.backgroundImage = UIColor.white.image
 self.tabBar.shadowImage = UIColor.init(0xEEEEEE).image
 item.setTitleTextAttributes(norTitleAttr, for: .normal)
 item.setTitleTextAttributes(selTitleAttr, for: .selected)
+```
+
+
 注意⚠️：首先是背景色设置失效，需要用UITabBarAppearance来设置
 
 ```
