@@ -1,5 +1,35 @@
-# iOS16
-iOS 15 - iOS 16 开发 适配 总结帖
+# iOS 15 - iOS 16 开发 适配 总结帖
+
+iOS16 Xcode14适配内容：
+
+新增控件UICalendarView，显示日期支持单选与多选
+新增控件UIEditMenuInteraction，取代 UIMenuController、UIMenuItem
+
+新增控件UIFindInteraction 文本内容查找与替换
+新增控件UIPasteControl 读取剪贴板中的内容，跨 App 读取需要授权弹框
+
+UIImage 新增的构造函数，支持 SF Symbols 新增的类别 Variable
+LARightStore 存储、获取 keychain 数据
+
+iOS 16 真机调试开启，设置-隐私与安全-开发者模式
+
+UIScreen.main 将会废弃，建议使用 (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.screen
+支持 setValue() 方法设置设备的方向，替换为 UIWindowScene 的 requestGeometryUpdate() 方法。
+UISheetPresentationController 支持自定义显示的 UIViewController 的大小。
+UINavigationItem 改动
+
+新增属性 style 描述 UINavigationItem 在 UINavigationBar 上的布局
+新增属性 backAction 用于自定义 UIViewController 返回button事件
+新增属性 titleMenuProvider 用于给当前导航栏的标题添加操作菜单
+
+UIPageControl 支持垂直显示、设置指示器、设置当前页图片。
+UITableView、UICollectionView 使用 Cell Content Configuration 时支持使用 UIHostingConfiguration 包装 SwiftUI 代码定义 Cell 的内容。
+UITableView、UICollectionView 新增 selfSizingInvalidation 参数，使Cell可以自动调整大小
+UIMenu 支持尺寸 small 、 medium 、 large
+UIDevice 获取设备信息时，只能获取设备的名称，隐私权限增强
+WidgetFamily 新增分类 accessory ，支持 iOS 锁屏显示和 watchOS 表盘显示
+
+
 
 ## 对于iOS15适配汇总以及遇到的问题
 
