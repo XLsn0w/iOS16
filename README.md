@@ -1,7 +1,7 @@
 # iOS 15 - iOS 16 开发 适配 总结帖
 
 iOS16 Xcode14适配内容：
-
+```
 新增控件UICalendarView，显示日期支持单选与多选
 新增控件UIEditMenuInteraction，取代 UIMenuController、UIMenuItem
 
@@ -28,8 +28,7 @@ UITableView、UICollectionView 新增 selfSizingInvalidation 参数，使Cell可
 UIMenu 支持尺寸 small 、 medium 、 large
 UIDevice 获取设备信息时，只能获取设备的名称，隐私权限增强
 WidgetFamily 新增分类 accessory ，支持 iOS 锁屏显示和 watchOS 表盘显示
-
-
+```
 
 ## 对于iOS15适配汇总以及遇到的问题
 
