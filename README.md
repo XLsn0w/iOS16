@@ -1,6 +1,6 @@
 # iOS 15 - iOS 16 开发 适配 总结帖
 
-iOS16 Xcode14适配内容：
+### iOS16 Xcode14适配内容：
 ```
 新增控件UICalendarView，显示日期支持单选与多选
 新增控件UIEditMenuInteraction，取代 UIMenuController、UIMenuItem
@@ -28,6 +28,57 @@ UITableView、UICollectionView 新增 selfSizingInvalidation 参数，使Cell可
 UIMenu 支持尺寸 small 、 medium 、 large
 UIDevice 获取设备信息时，只能获取设备的名称，隐私权限增强
 WidgetFamily 新增分类 accessory ，支持 iOS 锁屏显示和 watchOS 表盘显示
+
+URLSession 建议通过连接迁移来优化网络切换场景下的 TCP 连接重建，降低网络的延迟。
+
+class ViewController: UIViewController {
+    lazy var session: URLSession = {
+        let configuration = URLSessionConfiguration.default
+        // MultipathServiceType是一个枚举类型，App可以采用不同的策略来利用这些网络通道
+        configuration.multipathServiceType = .handover
+        let session = URLSession(configuration: configuration)
+        return session
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+}
+
+
+打开系统通知设置界面的 URL Scheme 从
+UIApplicationOpenNotificationSettingsURLString替换为openNotificationSettingsURLString。
+import UIKit
+
+class ViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // 新的通知设置URL Scheme
+        let urlString = UIApplication.openNotificationSettingsURLString
+        if let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+}
+
+
+UIScreen.main即将被废弃，建议使用(UIApplication.shared.connectedScenes.first as? UIWindowScene)?.screen。
+import UIKit
+
+class ViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // 新的获取UIScreen尺寸的方法
+        if let screen = (UIApplication.shared.connectedScenes.first as? UIWindowScene)?.screen {
+            print(screen)
+        }
+    }
+}
+
 ```
 
 ## 对于iOS15适配汇总以及遇到的问题
