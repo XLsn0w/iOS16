@@ -1,6 +1,38 @@
 # iOS 15 - iOS 16 开发 适配 总结帖
 
 ### iOS16 Xcode14适配内容：
+
+## 更新macOS12.6 和 Xcode 14 后cocoapods不能安装解决办法
+
+```
+解决方法是安装新的 ruby (3.0.0 版本).
+
+ps: rvm 是 ruby 管理命令，如果电脑没安装，具体安装方法可自行去搜索
+
+rvm install 3.0.0
+如果想看 3 版本最新，可输入 rvm list known 查看最新版本
+
+输入命令，查看本地是否安装成功
+
+rvm list
+看到 3.0.0 版本即为成功，然后切换默认版本为 3.0.0.
+
+rvm use 3.0.0 --default
+输入 rvm list 查看一下是否切换成功
+
+rvm list               
+
+   ruby-2.7.0 [ x86_64 ]
+=* ruby-3.0.0 [ x86_64 ]
+3.0.0 版本前面出现 =* 即为切换成功，这时候
+
+切换了 ruby，所以要重新下载 CocoaPods.
+
+gem install -n /usr/local/bin cocoapods 
+下载完成，就可以去使用 pod 了
+
+```
+
 ```
 新增控件UICalendarView，显示日期支持单选与多选
 新增控件UIEditMenuInteraction，取代 UIMenuController、UIMenuItem
