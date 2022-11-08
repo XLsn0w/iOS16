@@ -1,6 +1,4 @@
-# iOS 15 - iOS 16 开发 适配 总结帖
-
-### iOS16 Xcode14适配内容：
+# iOS 15 - iOS 16 开发 适配 合集
 
 ## 更新macOS12.6 和 Xcode 14 后cocoapods不能安装解决办法
 
@@ -33,6 +31,7 @@ gem install -n /usr/local/bin cocoapods
 
 ```
 
+## iOS 16 新增API
 ```
 新增控件UICalendarView，显示日期支持单选与多选
 新增控件UIEditMenuInteraction，取代 UIMenuController、UIMenuItem
